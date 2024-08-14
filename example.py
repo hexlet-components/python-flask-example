@@ -1,8 +1,17 @@
 import json
 import uuid
-from flask import Flask, redirect, render_template, request, url_for
+from flask import (
+    get_flashed_messages,
+    flash,
+    Flask,
+    redirect,
+    render_template,
+    request,
+    url_for
+)
 
 app = Flask(__name__)
+app.secret_key = "secret_key"
 
 users = json.load(open("./users.json", 'r'))
 
@@ -16,12 +25,14 @@ def index():
 def users_get():
     with open("./users.json", "r") as f:
         users = json.load(f)
+    messages = get_flashed_messages(with_categories=True)
     term = request.args.get('term', '')
     filtered_users = [user for user in users if term in user['name']]
     return render_template(
         'users/index.html',
         users=filtered_users,
         search=term,
+        messages=messages
     )
 
 
@@ -44,6 +55,7 @@ def users_post():
     users.append(user)
     with open("./users.json", "w") as f:
         json.dump(users, f)
+    flash('Пользователь успешно добавлен', 'success')
     return redirect(url_for('users_get'), code=302)
 
 
