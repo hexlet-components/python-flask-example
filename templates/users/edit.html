@@ -1,0 +1,27 @@
+<h1>Редактировать пользователя</h1>
+<hr>
+{% if errors %}
+<ul class=flashes>
+    {% for _, error in errors.items() %}
+    <li class="error">{{ error }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<hr>
+<form action="{{ url_for('users_patch', id=user.id) }}" method="post">
+    <div>
+        <label for="user-nickname">
+          Имя:
+          <input type="text" id="user-name" name="name" value="{{ user.name }}">
+        </label>
+      </div>
+      <div>
+        <label for="user-email">
+          Email:
+          <input type="text" id="user-email" name="email" value="{{ user.email }}">
+        </label>
+      </div>
+      <div>
+        <button type="submit" title="Submit form">Обновить</button>
+    </div>
+</form>
