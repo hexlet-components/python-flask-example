@@ -3,4 +3,9 @@
 
 <a href="{{ url_for('users_edit', id=user.id) }}">Редактировать пользователя</a>
 
+<form action="{{ url_for('users_delete', id=user.id) }}" method="post"
+onsubmit="return confirm('Вы уверены что хотите удалить пользователя? Это действие нельзя отменить.');">
+<input type="submit" value="Удалить пользователя">
+</form>
+
 <p><a href="{{ url_for('users_get') }}">Назад к списку пользователей</a></p>

@@ -87,11 +87,17 @@ def users_patch(id):
             user=user,
             errors=errors,
         ), 422
-
-    user['name'] = data['name']
-    user['email'] = data['email']
-    repo.save(user)
+    data['id'] = user['id']
+    repo.save(data)
     flash('Пользователь успешно обновлен', 'success')
+    return redirect(url_for('users_get'))
+
+
+@app.route('/users/<id>/delete', methods=['POST'])
+def users_delete(id):
+    repo = UserRepository()
+    repo.destroy(id)
+    flash('Пользователь удален', 'success')
     return redirect(url_for('users_get'))
 
 
@@ -99,7 +105,6 @@ def users_patch(id):
 def users_show(id):
     repo = UserRepository()
     user = repo.find(id)
-    print(user)
     return render_template(
         'users/show.html',
         user=user,
