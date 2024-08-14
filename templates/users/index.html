@@ -8,16 +8,11 @@
     <input type="submit" value="Search" />
 </form>
 
-<table>
-     {% for user in users %}
-     <tr>
-       <td>
-           {{ user.id }}
-       </td>
-       <td>
-           {{ user.name }}
-       </td>
-     </tr>
-     {% endfor %}
- </table>
+<a href="/users/new">Добавить пользователя</a>
+
+<ul>
+    {% for user in users %}
+   <li>Имя: <a href="/users/{{user.id}}">{{ user.name }}</a>, Email: {{ user.email}}</li>
+    {% endfor %}
+</ul>
 {% endblock %}
