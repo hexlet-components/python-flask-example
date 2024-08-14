@@ -1,6 +1,6 @@
 import json
 import uuid
-from flask import Flask, redirect, render_template, request
+from flask import Flask, redirect, render_template, request, url_for
 
 app = Flask(__name__)
 
@@ -8,7 +8,7 @@ users = json.load(open("./users.json", 'r'))
 
 
 @app.route('/')
-def hello_world():
+def index():
     return 'Welcome to Flask!'
 
 
@@ -44,7 +44,7 @@ def users_post():
     users.append(user)
     with open("./users.json", "w") as f:
         json.dump(users, f)
-    return redirect('/users', code=302)
+    return redirect(url_for('users_get'), code=302)
 
 
 @app.route('/users/new')
