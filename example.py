@@ -24,7 +24,7 @@ def courses(id):
 
 
 @app.route('/users/<id>')
-def users(id):
+def show_user(id):
     user = {
         "id": id,
         "name": f"user-{id}"
