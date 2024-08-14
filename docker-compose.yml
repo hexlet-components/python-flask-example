@@ -1,0 +1,9 @@
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - 8000:8000
+    command: make prod
+    environment:
+      DATABASE_URL: postgres://postgres:password@db:5432/postgres
