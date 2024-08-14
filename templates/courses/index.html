@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}Курсы{% endblock %}
+
+{% block content %}
+<table>
+     {% for course in courses %}
+     <tr>
+       <td>
+           {{ course.id }}
+       </td>
+       <td>
+           {{ course.name }}
+       </td>
+     </tr>
+     {% endfor %}
+ </table>
+{% endblock %}
