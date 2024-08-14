@@ -71,7 +71,7 @@ def users_new():
 
 
 @app.route('/users/<id>')
-def show_user(id):
+def users_show(id):
     with open("./users.json", "r") as f:
         users = json.load(f)
     user = next(user for user in users if id == str(user['id']))
@@ -79,11 +79,6 @@ def show_user(id):
         'users/show.html',
         user=user,
     )
-
-
-@app.route('/courses/<id>')
-def courses(id):
-    return f'Course id: {id}'
 
 
 def validate(user):
