@@ -1,16 +1,16 @@
 {% extends "layout.html" %}
 
-{% block title %}Курсы{% endblock %}
+{% block title %}Пользователи{% endblock %}
 
 {% block content %}
 <table>
-     {% for course in courses %}
+     {% for user in users %}
      <tr>
        <td>
-           {{ course.id }}
+           {{ user.id }}
        </td>
        <td>
-           {{ course.name }}
+           {{ user.name }}
        </td>
      </tr>
      {% endfor %}

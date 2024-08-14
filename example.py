@@ -2,6 +2,8 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
+users = ['mike', 'mishel', 'adel', 'keks', 'kamila']
+
 
 @app.route('/')
 def hello_world():
