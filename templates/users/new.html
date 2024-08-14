@@ -1,27 +1,28 @@
 <h1>Новый пользователь</h1>
 <hr>
-<form action="/users" method="post">
-  <div>
+{% if errors %}
+<ul class=flashes>
+    {% for _, error in errors.items() %}
+    <li class="error">{{ error }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<form action="{{ url_for('users_post') }}" method="post">
+    <div>
     <label for="user-nickname">
       Имя:
       <input type="text" id="user-name" name="name" value="{{ user.name }}">
     </label>
-    {% if errors['name'] %}
-    <div>{{ errors['name'] }}</div>
-    {% endif %}
   </div>
   <div>
     <label for="user-email">
       Email:
       <input type="text" id="user-email" name="email" value="{{ user.email }}">
     </label>
-    {% if errors['email'] %}
-    <div>{{ errors['email'] }}</div>
-    {% endif %}
   </div>
   <div>
     <button type="submit" title="Submit form">Добавить</button>
   </div>
 </form>
 
-<p><a href="/users">Назад к списку пользователей</a></p>
+<p><a href="{{ url_for('users_get') }}">Назад к списку пользователей</a></p>
