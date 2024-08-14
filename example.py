@@ -61,6 +61,40 @@ def users_new():
     )
 
 
+@app.route('/users/<id>/edit')
+def users_edit(id):
+    repo = UserRepository()
+    user = repo.find(id)
+    errors = {}
+
+    return render_template(
+        'users/edit.html',
+        user=user,
+        errors=errors,
+    )
+
+
+@app.route('/users/<id>/patch', methods=['POST'])
+def users_patch(id):
+    repo = UserRepository()
+    user = repo.find(id)
+    data = request.form.to_dict()
+
+    errors = validate(data)
+    if errors:
+        return render_template(
+            'users/edit.html',
+            user=user,
+            errors=errors,
+        ), 422
+
+    user['name'] = data['name']
+    user['email'] = data['email']
+    repo.save(user)
+    flash('Пользователь успешно обновлен', 'success')
+    return redirect(url_for('users_get'))
+
+
 @app.route('/users/<id>')
 def users_show(id):
     repo = UserRepository()

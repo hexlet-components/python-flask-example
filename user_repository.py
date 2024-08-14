@@ -2,6 +2,7 @@ import json
 import sys
 import uuid
 
+
 class UserRepository():
     def __init__(self):
         self.users = json.load(open("./users.json", 'r'))
@@ -24,8 +25,10 @@ class UserRepository():
             raise Exception(f'Wrong data: {json.loads(new_user)}')
         # replace already existed user
         if new_user.get('id'):
-            current_user = self.find(new_user['id'])
-            self.users.pop(current_user)
+            for current in self.users:
+                if new_user['id'] == current['id']:
+                    del current
+                    break
             self.users.append(new_user)
         # or add new
         else:
