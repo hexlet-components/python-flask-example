@@ -12,6 +12,8 @@ python = "^3.10"
 Flask = "^3.0.3"
 gunicorn = "^23.0.0"
 
+[tool.poetry.group.dev.dependencies]
+flake8 = "^7.1.1"
 
 [build-system]
 requires = ["poetry-core"]
