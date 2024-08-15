@@ -17,20 +17,7 @@ run:
 prod:
 	poetry run gunicorn --workers=4 --bind 0.0.0.0:$(PORT) example:app --log-file -
 
-compose:
-	docker compose up
-
-compose-setup: compose-build
-	docker compose run app make install
-
-compose-build:
-	docker compose build
-
-compose-down:
-	docker compose down -v
-
-compose-dev:
-	docker compose run app make run
-
-compose-bash:
-	docker compose run app bash
+compose-production-run-app:
+	docker compose -p python_page_analyzer_ru-production -f docker-compose.production.yml down
+	docker compose -p python_page_analyzer_ru-production -f docker-compose.production.yml build
+	docker compose -p python_page_analyzer_ru-production -f docker-compose.production.yml up
