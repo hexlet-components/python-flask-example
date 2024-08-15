@@ -1,10 +1,10 @@
 # python-flask-example
 
-[![Python CI](https://github.com/hexlet-components/python-flask/actions/workflows/python-ci.yml/badge.svg)](https://github.com/hexlet-components/python-flask/actions/workflows/python-ci.yml)
+[![Python CI](https://github.com/hexlet-components/python-flask-example/actions/workflows/python-ci.yml/badge.svg)](https://github.com/hexlet-components/python-flask-example/actions/workflows/python-ci.yml)
 
 # Self-study for the Flask course.
 
-Demo ...
+Demo https://python-flask.hexlet.app/
 ----
 
 ## Usefull commands
