@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Flask проект</title>
+</head>
+<h1>Эталонный проект по курсу Flask</h1>
+<body>
+<div id="sidebar">
+    {% block sidebar %}
+        <ul>
+            <li><a href="{{ url_for('users_get') }}">Пользователи</a></li>
+        </ul>
+    {% endblock %}
+</div>
+</body>
+</html>

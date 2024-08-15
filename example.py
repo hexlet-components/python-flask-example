@@ -19,7 +19,7 @@ repo = UserRepository(app.config['DATABASE_URL'])
 
 @app.route('/')
 def index():
-    return 'Welcome to Flask!'
+    return render_template('home.html')
 
 
 @app.route('/users/')
