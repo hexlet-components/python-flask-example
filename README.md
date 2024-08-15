@@ -1,10 +1,10 @@
-# python-flask
+# python-flask-example
 
 [![Python CI](https://github.com/hexlet-components/python-flask/actions/workflows/python-ci.yml/badge.svg)](https://github.com/hexlet-components/python-flask/actions/workflows/python-ci.yml)
 
 # Self-study for the Flask course.
 
-Demo https://python-flask.hexlet.app/
+Demo ...
 ----
 
 ## Usefull commands
@@ -13,8 +13,8 @@ Demo https://python-flask.hexlet.app/
 # install deps
 make install
 
-# run tests and linter
-make check
+# run linter
+make lint
 
 # run localy
 make run
