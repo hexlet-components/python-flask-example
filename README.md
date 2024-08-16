@@ -16,8 +16,8 @@ make install
 # run linter
 make lint
 
-# run localy
-make run
+# run in docker
+make compose-production-run
 ```
 
 

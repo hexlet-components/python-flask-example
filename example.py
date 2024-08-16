@@ -1,4 +1,5 @@
 import os
+import psycopg2
 from flask import (
     get_flashed_messages,
     flash,
@@ -14,7 +15,9 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['DATABASE_URL'] = os.getenv('DATABASE_URL')
 
-repo = UserRepository(app.config['DATABASE_URL'])
+
+conn = psycopg2.connect(app.config['DATABASE_URL'])
+repo = UserRepository(conn)
 
 
 @app.route('/')
@@ -26,11 +29,13 @@ def index():
 def users_get():
     messages = get_flashed_messages(with_categories=True)
     term = request.args.get('term', '')
-    users = repo.get_content()
-    filtered_users = [user for user in users if term in user['name']]
+    if term:
+        users = repo.get_by_term(term)
+    else:
+        users = repo.get_content()
     return render_template(
         'users/index.html',
-        users=filtered_users,
+        users=users,
         search=term,
         messages=messages
     )
