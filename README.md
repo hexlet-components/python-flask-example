@@ -4,9 +4,6 @@
 
 # Self-study for the Flask course.
 
-Demo https://python-flask.hexlet.app/
-----
-
 ## Usefull commands
 
 ```bash
