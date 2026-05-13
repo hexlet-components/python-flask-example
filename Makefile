@@ -1,21 +1,22 @@
 PORT ?= 8000
 
 install:
-	poetry install
+	uv sync
 
 lint:
-	poetry run flake8
+	uv run ruff check .
+	uv run ruff format --check .
 
 test:
-	poetry run pytest -vv tests
+	uv run pytest -vv tests
 
 check: test lint
 
 run:
-	poetry run flask --app example --debug run --host 0.0.0.0 --port $(PORT)
+	uv run flask --app example --debug run --host 0.0.0.0 --port $(PORT)
 
 prod:
-	poetry run gunicorn --workers=4 --bind 0.0.0.0:$(PORT) example:app --log-file -
+	uv run gunicorn --workers=4 --bind 0.0.0.0:$(PORT) example:app --log-file -
 
 compose-production-run:
 	docker compose -p python_page_analyzer_ru-production down

@@ -1,21 +1,38 @@
-[tool.poetry]
+[project]
 name = "python-flask-example"
 version = "0.1.0"
 description = "A simple Flask app"
-authors = ["Hexlet Team <info@hexlet.io>"]
-license = "ISC"
 readme = "README.md"
-package-mode = false
+license = { text = "ISC" }
+requires-python = ">=3.10"
+dependencies = [
+    "flask>=3.1.1",
+    "gunicorn>=23.0.0",
+    "psycopg2-binary>=2.9.10",
+]
 
-[tool.poetry.dependencies]
-python = "^3.10"
-Flask = "^3.0.3"
-gunicorn = "^23.0.0"
-psycopg2-binary = "^2.9.9"
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+    "ruff>=0.11.0",
+]
 
-[tool.poetry.group.dev.dependencies]
-flake8 = "^7.1.1"
+[tool.ruff]
+line-length = 80
+exclude = [
+    ".git",
+    "__pycache__",
+    ".venv",
+    ".eggs",
+    "*.egg",
+    ".vscode",
+]
 
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*.py" = ["S101"]
+
+[tool.ruff.format]
+quote-style = "double"
