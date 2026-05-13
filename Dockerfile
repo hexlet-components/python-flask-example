@@ -1,8 +1,8 @@
-FROM python:3.12-slim
+FROM python:3.13-slim
 
 RUN apt-get update && apt-get install -yqq \
     make \
-    postgresql-15 \
+    postgresql-17 \
     sudo \
     curl
 
@@ -22,8 +22,8 @@ COPY . .
 COPY init.sql /docker-entrypoint-initdb.d/
 
 # postgres config
-RUN echo "host all all 0.0.0.0/0 md5" >> /etc/postgresql/15/main/pg_hba.conf && \
-    echo "listen_addresses='*'" >> /etc/postgresql/15/main/postgresql.conf
+RUN echo "host all all 0.0.0.0/0 md5" >> /etc/postgresql/17/main/pg_hba.conf && \
+    echo "listen_addresses='*'" >> /etc/postgresql/17/main/postgresql.conf
 
 # create docker user and db
 RUN service postgresql start && \
