@@ -8,9 +8,16 @@ def hello_world():
     return 'Welcome to Flask!'
 
 
+users = [
+    {"id": 1, "name": "user-1"},
+    {"id": 2, "name": "user-2"},
+    {"id": 3, "name": "user-3"},
+]
+
+
 @app.get('/users')
 def users_get():
-    return 'GET /users'
+    return render_template('users/index.html', users=users)
 
 
 @app.post('/users')
