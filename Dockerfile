@@ -6,15 +6,16 @@ RUN apt-get update && apt-get install -yqq \
     sudo \
     curl
 
-RUN pip install poetry
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /usr/local/bin/
 
-ENV POETRY_VIRTUALENVS_IN_PROJECT=true
+ENV UV_COMPILE_BYTECODE=1 \
+    UV_LINK_MODE=copy
 
 WORKDIR /app
 
-COPY pyproject.toml .
+COPY pyproject.toml uv.lock ./
 
-RUN poetry install
+RUN uv sync --frozen --no-dev --no-install-project
 
 COPY . .
 
