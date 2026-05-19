@@ -1,6 +1,6 @@
 import os
 
-import psycopg2
+import psycopg
 from flask import (
     Flask,
     flash,
@@ -18,7 +18,7 @@ app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 app.config["DATABASE_URL"] = os.getenv("DATABASE_URL")
 
 
-conn = psycopg2.connect(app.config["DATABASE_URL"])
+conn = psycopg.connect(app.config["DATABASE_URL"])
 repo = UserRepository(conn)
 
 

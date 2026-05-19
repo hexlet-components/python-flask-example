@@ -1,4 +1,4 @@
-from psycopg2.extras import RealDictCursor
+from psycopg.rows import dict_row
 
 
 class UserRepository:
@@ -6,12 +6,12 @@ class UserRepository:
         self.conn = conn
 
     def get_content(self):
-        with self.conn.cursor(cursor_factory=RealDictCursor) as cur:
+        with self.conn.cursor(row_factory=dict_row) as cur:
             cur.execute("SELECT * FROM users")
             return cur.fetchall()
 
     def get_by_term(self, search_term=""):
-        with self.conn.cursor(cursor_factory=RealDictCursor) as cur:
+        with self.conn.cursor(row_factory=dict_row) as cur:
             cur.execute(
                 "SELECT * FROM users WHERE name ILIKE %s",
                 (f"%{search_term}%",),
@@ -19,7 +19,7 @@ class UserRepository:
             return cur.fetchall()
 
     def find(self, id):
-        with self.conn.cursor(cursor_factory=RealDictCursor) as cur:
+        with self.conn.cursor(row_factory=dict_row) as cur:
             cur.execute("SELECT * FROM users WHERE id = %s", (id,))
             return cur.fetchone()
 
