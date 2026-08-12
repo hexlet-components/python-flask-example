@@ -15,19 +15,18 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - name: Set up Python
-        uses: actions/setup-python@v7
-        with:
-          python-version: "3.13"
+      # setup-python не нужен: версию питона держит .python-version, и uv сам
+      # ставит её при первом `uv sync`. Единый источник версии, поэтому раннер
+      # и образ кита не могут разойтись.
+      - uses: astral-sh/setup-uv@v10.0.0
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@v7
-
-      - name: Install dependencies
-        run: uv sync
-
-      - name: Lint
+      - name: Install
+        run: make install
+      - name: Run linter
         run: make lint
+
+      # Тестов у примера нет: каждый шаг курса это отдельная ветка-снимок
+      # приложения, а не покрытый тестами проект. Поэтому в CI только линтер.
 
   deploy:
     needs: build
