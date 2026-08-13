@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "A simple Flask app"
 readme = "README.md"
 license = { text = "ISC" }
-requires-python = ">=3.10"
+requires-python = ">=3.14"
 dependencies = [
     "flask>=3.1.1",
     "gunicorn>=23.0.0",
@@ -30,9 +30,6 @@ exclude = [
 
 [tool.ruff.lint]
 select = ["E", "F", "I"]
-
-[tool.ruff.lint.per-file-ignores]
-"tests/*.py" = ["S101"]
 
 [tool.ruff.format]
 quote-style = "double"
