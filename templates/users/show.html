@@ -1,4 +1,8 @@
+{% extends "layouts/layout.html" %}
+
+{% block content %}
 <div>Имя = {{ user.name }}</div>
 <div>Email = {{ user.email }}</div>
 
 <p><a href="/users">Назад к списку пользователей</a></p>
+{% endblock %}
