@@ -1,3 +1,6 @@
+{% extends "layouts/layout.html" %}
+
+{% block content %}
 <div>Имя = {{ user.name }}</div>
 <div>Email = {{ user.email }}</div>
 
@@ -9,3 +12,4 @@ onsubmit="return confirm('Вы уверены что хотите удалить
 </form>
 
 <p><a href="{{ url_for('users_get') }}">Назад к списку пользователей</a></p>
+{% endblock %}
