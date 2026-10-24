@@ -13,6 +13,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "deptry>=0.25.1",
     "pytest>=9.1.1",
     "ruff>=0.16.2",
 ]
@@ -33,3 +34,8 @@ select = ["E", "F", "I"]
 
 [tool.ruff.format]
 quote-style = "double"
+
+[tool.deptry]
+# psycopg ставится с extras binary, а импортируется как psycopg.
+# gunicorn запускается из командной строки и в коде не импортируется.
+per_rule_ignores = { DEP002 = ["gunicorn"] }
