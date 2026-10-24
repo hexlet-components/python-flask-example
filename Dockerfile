@@ -1,10 +1,11 @@
 FROM python:3.14-slim
 
-RUN apt-get update && apt-get install -yqq \
+RUN apt-get update && apt-get install -yqq --no-install-recommends \
     make \
     postgresql-17 \
     sudo \
-    curl
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /usr/local/bin/
 
@@ -34,4 +35,4 @@ RUN service postgresql start && \
 COPY run.sh ./run.sh
 RUN chmod +x ./run.sh
 
-CMD ./run.sh
+CMD ["./run.sh"]
